@@ -25,6 +25,35 @@ body {
   margin: 25px;
   position: absolute;
   overflow: hidden; /* Prevent content from overflowing */
+  position: relative; /* Needed for the pseudo-element */
+}
+
+/* Add dynamic border animation */
+#display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(90deg, 
+    #4285f4, #34a853, #fbbc05, #ea4335, #4285f4);
+  background-size: 400% 100%;
+  animation: animatedBorder 8s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none; /* Allow clicks through the border */
+  z-index: 2;
+}
+
+/* Create keyframes for the border animation */
+@keyframes animatedBorder {
+  0% { background-position: 0% 0; }
+  100% { background-position: 400% 0; }
 }
 
 h1 {
@@ -106,11 +135,20 @@ h1 {
   justify-content: center;
   align-items: center;
   z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
-.btn p {
-  text-align: center;
-  width: 100%;
+/* .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  background-color: #f8f8f8;
+} */
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 #timeBtn {
@@ -158,6 +196,22 @@ h1 {
   100% {
     top: 30px;
   }
+}
+
+/* Add special hover effects for control buttons */
+#stop:hover {
+  background-color: #ffeeee;
+  border-color: rgba(255,0,0,0.1);
+}
+
+#reset:hover {
+  background-color: #ffffee;
+  border-color: rgba(255,255,0,0.1);
+}
+
+#start:hover {
+  background-color: #eeffee;
+  border-color: rgba(0,255,0,0.1);
 }
 
 /* Add responsive styles for mobile and tablet devices */
