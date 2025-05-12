@@ -4,6 +4,9 @@ body {
   background-color: lightblue;
   cursor: default;
   font-family: sans-serif;
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }
 
 #background {
@@ -12,7 +15,7 @@ body {
   background-color: white;
   border-radius: 10px;
   margin: auto;
-  margin-top: 40px;
+  position: relative;
 }
 
 #display {
@@ -86,14 +89,24 @@ h1 {
 }
 
 .btn {
-  top: 30px;
   position: absolute;
-  height: 70px;
+  height: 35px;
   font-family: sans-serif;
-  text-align: bottom;
   cursor: pointer;
   background-color: white;
   border-radius: 5px;
+  width: auto;
+  min-width: 50px;
+  padding: 0 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.btn p {
+  text-align: center;
+  width: 100%;
 }
 
 #timeBtn {
@@ -140,5 +153,40 @@ h1 {
   }
   100% {
     top: 30px;
+  }
+}
+
+/* Add responsive styles for mobile and tablet devices */
+@media (max-width: 540px) {
+  #background {
+    width: 95%;
+    max-width: 500px;
+  }
+  
+  #display {
+    width: 90%;
+  }
+  
+  /* Fix button visibility on mobile */
+  .btn {
+    min-width: 40px;
+    padding: 0 8px;
+  }
+  
+  #timeBtn, #timerBtn, #stopwatchBtn {
+    display: block !important;
+  }
+  
+  /* Ensure stop/reset/start buttons are visible when they should be */
+  #stop, #reset, #start {
+    display: none; /* Keep initial state */
+  }
+}
+
+@media (max-width: 400px) {
+  .btn {
+    min-width: 35px;
+    padding: 0 5px;
+    font-size: 14px;
   }
 }

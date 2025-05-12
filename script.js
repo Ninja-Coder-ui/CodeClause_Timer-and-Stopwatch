@@ -50,11 +50,11 @@ window.onload = function() {
             isTimerRunning = true;
             
             // Update status indicator
-            const statusEl = document.getElementById("timerStatus");
-            if (statusEl) {
-                statusEl.textContent = "Running";
-                statusEl.style.color = "#4CAF50";
-            }
+            // const statusEl = document.getElementById("timerStatus");
+            // if (statusEl) {
+            //     statusEl.textContent = "Running";
+            //     statusEl.style.color = "#4CAF50";
+            // }
         });
     }
 };
@@ -131,11 +131,11 @@ function showTimer() {
 		}
 		
 		// Initialize status indicator
-		const statusEl = document.getElementById("timerStatus");
-		if (statusEl) {
-			statusEl.textContent = "Ready";
-			statusEl.style.color = "#4CAF50";
-		}
+		// const statusEl = document.getElementById("timerStatus");
+		// if (statusEl) {
+		// 	statusEl.textContent = "Ready";
+		// 	statusEl.style.color = "#4CAF50";
+		// }
 }
 function showStopwatch() {
 		// Stop any running timer/stopwatch when switching views
@@ -164,11 +164,11 @@ function showStopwatch() {
 		time.innerHTML = "00:00";
 		
 		// Initialize status indicator
-		const statusEl = document.getElementById("stopwatchStatus");
-		if (statusEl) {
-			statusEl.textContent = "Ready";
-			statusEl.style.color = "#4CAF50";
-		}
+		// const statusEl = document.getElementById("stopwatchStatus");
+		// if (statusEl) {
+		// 	statusEl.textContent = "Ready";
+		// 	statusEl.style.color = "#4CAF50";
+		// }
 }
 
 function stop() {
@@ -177,19 +177,19 @@ function stop() {
 	console.log("Stopped timers");
 	
 	// Update status indicators
-	if (timerType === 1) {
-		const statusEl = document.getElementById("timerStatus");
-		if (statusEl) {
-			statusEl.textContent = "Paused";
-			statusEl.style.color = "#ff9800";
-		}
-	} else if (timerType === 2) {
-		const statusEl = document.getElementById("stopwatchStatus");
-		if (statusEl) {
-			statusEl.textContent = "Paused";
-			statusEl.style.color = "#ff9800";
-		}
-	}
+	// if (timerType === 1) {
+	// 	const statusEl = document.getElementById("timerStatus");
+	// 	if (statusEl) {
+	// 		statusEl.textContent = "Paused";
+	// 		statusEl.style.color = "#ff9800";
+	// 	}
+	// } else if (timerType === 2) {
+	// 	const statusEl = document.getElementById("stopwatchStatus");
+	// 	if (statusEl) {
+	// 		statusEl.textContent = "Paused";
+	// 		statusEl.style.color = "#ff9800";
+	// 	}
+	// }
 }
 function reset() {
 	clearInterval(timer);
@@ -223,19 +223,127 @@ function reset() {
 		}
 		
 		// Update status
-		const statusEl = document.getElementById("stopwatchStatus");
-		if (statusEl) {
-			statusEl.textContent = "Ready";
-			statusEl.style.color = "#4CAF50";
-		}
+		// const statusEl = document.getElementById("stopwatchStatus");
+		// if (statusEl) {
+		// 	statusEl.textContent = "Ready";
+		// 	statusEl.style.color = "#4CAF50";
+		// }
 	}
 	
 	console.log("Reset Timers");
 }
+
+// Add custom modal alert function
+function showModalAlert(message) {
+    // Create modal alert container
+    const alertOverlay = document.createElement('div');
+    alertOverlay.style.position = 'fixed';
+    alertOverlay.style.top = '0';
+    alertOverlay.style.left = '0';
+    alertOverlay.style.width = '100%';
+    alertOverlay.style.height = '100%';
+    alertOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+    alertOverlay.style.display = 'flex';
+    alertOverlay.style.justifyContent = 'center';
+    alertOverlay.style.alignItems = 'center';
+    alertOverlay.style.zIndex = '2000';
+    alertOverlay.style.animation = 'fadeIn 0.3s ease';
+    
+    const alertContent = document.createElement('div');
+    alertContent.style.backgroundColor = '#fff';
+    alertContent.style.borderRadius = '10px';
+    alertContent.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+    alertContent.style.width = '90%';
+    alertContent.style.maxWidth = '400px';
+    alertContent.style.padding = '30px';
+    alertContent.style.textAlign = 'center';
+    alertContent.style.animation = 'slideIn 0.3s ease';
+    
+    const title = document.createElement('h2');
+    title.style.fontSize = '24px';
+    title.style.marginTop = '0';
+    title.style.marginBottom = '20px';
+    title.style.color = '#333';
+    title.style.fontWeight = '500';
+    title.textContent = 'Notice';
+    
+    const messageElement = document.createElement('p');
+    messageElement.style.fontSize = '18px';
+    messageElement.style.color = '#555';
+    messageElement.style.marginBottom = '25px';
+    messageElement.textContent = message;
+    
+    const okButton = document.createElement('button');
+    okButton.style.padding = '12px 24px';
+    okButton.style.border = 'none';
+    okButton.style.borderRadius = '6px';
+    okButton.style.fontSize = '16px';
+    okButton.style.fontWeight = '500';
+    okButton.style.cursor = 'pointer';
+    okButton.style.backgroundColor = '#4CAF50';
+    okButton.style.color = 'white';
+    okButton.style.minWidth = '120px';
+    okButton.style.transition = 'all 0.2s ease';
+    okButton.textContent = 'OK';
+    okButton.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = '#45a049';
+    });
+    okButton.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = '#4CAF50';
+    });
+    
+    // Add elements to the alert
+    alertContent.appendChild(title);
+    alertContent.appendChild(messageElement);
+    alertContent.appendChild(okButton);
+    alertOverlay.appendChild(alertContent);
+    document.body.appendChild(alertOverlay);
+    
+    // Add animation styles if they don't exist
+    if (!document.getElementById('timerAnimationStyles')) {
+        const styleEl = document.createElement('style');
+        styleEl.id = 'timerAnimationStyles';
+        styleEl.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideIn {
+                from { transform: translateY(-50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(styleEl);
+    }
+    
+    // Close alert when clicking the OK button
+    okButton.addEventListener('click', function() {
+        alertOverlay.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(alertOverlay);
+        }, 300);
+    });
+    
+    // Close when clicking outside
+    alertOverlay.addEventListener('click', function(e) {
+        if (e.target === alertOverlay) {
+            alertOverlay.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                document.body.removeChild(alertOverlay);
+            }, 300);
+        }
+    });
+}
+
 function start() {
 	// Check if any timer/stopwatch is already running
 	if(isTimerRunning) {
-		alert("Please stop the current timer/stopwatch before starting a new one.");
+		// Replace standard alert with modal alert
+        showModalAlert("Please stop the current timer/stopwatch before starting a new one.");
 		return;
 	}
 	
@@ -255,11 +363,11 @@ function start() {
 			timer = setInterval(goTimer, 1000);
 			isTimerRunning = true;
 			
-			const statusEl = document.getElementById("timerStatus");
-			if (statusEl) {
-				statusEl.textContent = "Running";
-				statusEl.style.color = "#4CAF50";
-			}
+			// const statusEl = document.getElementById("timerStatus");
+			// if (statusEl) {
+			// 	statusEl.textContent = "Running";
+			// 	statusEl.style.color = "#4CAF50";
+			// }
 		}
 	} else {
 		// Start stopwatch - update every 10ms for millisecond precision
@@ -267,11 +375,11 @@ function start() {
 		isTimerRunning = true;
 		
 		// Update status
-		const statusEl = document.getElementById("stopwatchStatus");
-		if (statusEl) {
-			statusEl.textContent = "Running";
-			statusEl.style.color = "#4CAF50";
-		}
+		// const statusEl = document.getElementById("stopwatchStatus");
+		// if (statusEl) {
+		// 	statusEl.textContent = "Running";
+		// 	statusEl.style.color = "#4CAF50";
+		// }
 	}
 }
 
@@ -282,28 +390,75 @@ function goTimer() {
         isTimerRunning = false; // Reset the running flag when timer finishes
         
         // Update status
-        const statusEl = document.getElementById("timerStatus");
-        if (statusEl) {
-            statusEl.textContent = "Completed!";
-            statusEl.style.color = "#ff5252";
-            statusEl.style.fontWeight = "bold";
-        }
+        // const statusEl = document.getElementById("timerStatus");
+        // if (statusEl) {
+        //     statusEl.textContent = "Completed!";
+        //     statusEl.style.color = "#ff5252";
+        //     statusEl.style.fontWeight = "bold";
+        // }
         
-        // Create and show completion notification
+        // Create and show completion notification that matches the modal style
         const notification = document.createElement('div');
         notification.style.position = 'fixed';
-        notification.style.bottom = '30px';
-        notification.style.left = '50%';
-        notification.style.transform = 'translateX(-50%)';
-        notification.style.backgroundColor = '#4CAF50';
-        notification.style.color = 'white';
-        notification.style.padding = '15px 30px';
-        notification.style.borderRadius = '50px';
-        notification.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-        notification.style.fontWeight = 'bold';
-        notification.style.fontSize = '18px';
-        notification.style.zIndex = '2000';        notification.style.animation = 'timerFadeIn 0.3s, timerPulse 2s infinite';
-        notification.textContent = '⏰ Timer Complete!';
+        notification.style.top = '0';
+        notification.style.left = '0';
+        notification.style.width = '100%';
+        notification.style.height = '100%';
+        notification.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        notification.style.display = 'flex';
+        notification.style.justifyContent = 'center';
+        notification.style.alignItems = 'center';
+        notification.style.zIndex = '2000';
+        notification.style.animation = 'fadeIn 0.3s ease';
+        
+        const notificationContent = document.createElement('div');
+        notificationContent.style.backgroundColor = '#fff';
+        notificationContent.style.borderRadius = '10px';
+        notificationContent.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+        notificationContent.style.width = '90%';
+        notificationContent.style.maxWidth = '400px';
+        notificationContent.style.padding = '30px';
+        notificationContent.style.textAlign = 'center';
+        notificationContent.style.animation = 'slideIn 0.3s ease';
+        
+        const title = document.createElement('h2');
+        title.style.fontSize = '28px';
+        title.style.marginTop = '0';
+        title.style.marginBottom = '20px';
+        title.style.color = '#333';
+        title.style.fontWeight = '500';
+        title.textContent = 'Timer Complete!';
+        
+        const message = document.createElement('p');
+        message.style.fontSize = '18px';
+        message.style.color = '#555';
+        message.style.marginBottom = '25px';
+        message.textContent = 'Your countdown timer has finished.';
+        
+        const okButton = document.createElement('button');
+        okButton.style.padding = '12px 24px';
+        okButton.style.border = 'none';
+        okButton.style.borderRadius = '6px';
+        okButton.style.fontSize = '16px';
+        okButton.style.fontWeight = '500';
+        okButton.style.cursor = 'pointer';
+        okButton.style.backgroundColor = '#4CAF50';
+        okButton.style.color = 'white';
+        okButton.style.minWidth = '120px';
+        okButton.style.transition = 'all 0.2s ease';
+        okButton.textContent = 'OK';
+        okButton.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#45a049';
+        });
+        okButton.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '#4CAF50';
+        });
+        
+        // Add elements to the notification
+        notificationContent.appendChild(title);
+        notificationContent.appendChild(message);
+        notificationContent.appendChild(okButton);
+        notification.appendChild(notificationContent);
         document.body.appendChild(notification);
         
         // Add animation styles if they don't exist
@@ -311,44 +466,39 @@ function goTimer() {
             const styleEl = document.createElement('style');
             styleEl.id = 'timerAnimationStyles';
             styleEl.textContent = `
-                @keyframes timerFadeIn {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
                 }
-                @keyframes timerFadeOut {
-                    from { opacity: 1; transform: translateY(0); }
-                    to { opacity: 0; transform: translateY(20px); }
+                @keyframes slideIn {
+                    from { transform: translateY(-50px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
                 }
-                @keyframes timerPulse {
-                    0% { transform: scale(1); }
-                    50% { transform: scale(1.05); }
-                    100% { transform: scale(1); }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
                 }
             `;
             document.head.appendChild(styleEl);
         }
         
-        // Visual flash effect
-        const flashOverlay = document.createElement('div');
-        flashOverlay.style.position = 'fixed';
-        flashOverlay.style.top = '0';
-        flashOverlay.style.left = '0';
-        flashOverlay.style.width = '100%';
-        flashOverlay.style.height = '100%';
-        flashOverlay.style.backgroundColor = 'rgba(76, 175, 80, 0.3)';
-        flashOverlay.style.zIndex = '1500';
-        flashOverlay.style.animation = 'timerFadeIn 0.3s';
-        document.body.appendChild(flashOverlay);
-          // Remove notification and flash overlay after 3 seconds
-        setTimeout(() => {
-            notification.style.animation = 'timerFadeOut 0.3s';
-            flashOverlay.style.animation = 'timerFadeOut 0.3s';
-            
+        // Close notification when clicking the OK button
+        okButton.addEventListener('click', function() {
+            notification.style.animation = 'fadeOut 0.3s ease';
             setTimeout(() => {
                 document.body.removeChild(notification);
-                document.body.removeChild(flashOverlay);
             }, 300);
-        }, 3000);
+        });
+        
+        // Close when clicking outside
+        notification.addEventListener('click', function(e) {
+            if (e.target === notification) {
+                notification.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }
+        });
         
         return;
     }
@@ -364,16 +514,6 @@ function goTimer() {
             timerHours--;
             timerMinutes = 59;
             timerSeconds = 59;
-        }
-    }
-    
-    // Visual feedback for the last 10 seconds
-    if (timerHours === 0 && timerMinutes === 0 && timerSeconds <= 10) {
-        // Make the display blink during the final countdown
-        const timerDisplay = document.getElementById("timerNum");
-        if (timerDisplay) {
-            timerDisplay.style.color = timerSeconds % 2 === 0 ? '#ff5252' : '#333';
-            timerDisplay.style.fontSize = timerSeconds % 2 === 0 ? '110%' : '100%';
         }
     }
     
