@@ -24,6 +24,7 @@ body {
   background-color: lightgrey;
   margin: 25px;
   position: absolute;
+  overflow: hidden; /* Prevent content from overflowing */
 }
 
 h1 {
@@ -40,6 +41,7 @@ h1 {
   margin-left: 260px;
   font-size: 30px;
   font-family: sans-serif;
+  z-index: 15; /* Higher z-index to prevent overlap */
 }
 
 #timeSeconds {
@@ -49,6 +51,7 @@ h1 {
   font-size: 30px;
   font-family: sans-serif;
   display: none;
+  z-index: 15; /* Higher z-index to prevent overlap */
 }
 
 .type {
@@ -56,6 +59,7 @@ h1 {
   width: 50px;
   background-color: #c7c7c7;
   position: absolute;
+  z-index: 10; /* Lower z-index than seconds */
 }
 
 #Time {
@@ -165,28 +169,127 @@ h1 {
   
   #display {
     width: 90%;
+    max-width: 430px;
   }
   
-  /* Fix button visibility on mobile */
+  h1 {
+    font-size: 80px; /* Smaller font on mobile */
+  }
+  
+  #seconds, #timeSeconds {
+    margin-left: 210px; /* Adjust position on mobile */
+    font-size: 26px;
+  }
+  
+  /* Move indicators to prevent overlap */
+  #Time, #Timer, #Stopwatch {
+    margin-left: 320px;
+  }
+  
+  /* Fix buttons for mobile */
   .btn {
     min-width: 40px;
-    padding: 0 8px;
+    padding: 0 5px;
+    font-size: 14px;
   }
   
-  #timeBtn, #timerBtn, #stopwatchBtn {
-    display: block !important;
+  /* Adjust control buttons */
+  #stop {
+    margin-left: 240px;
   }
   
-  /* Ensure stop/reset/start buttons are visible when they should be */
-  #stop, #reset, #start {
-    display: none; /* Keep initial state */
+  #reset {
+    margin-left: 290px;
+  }
+  
+  #start {
+    margin-left: 340px;
   }
 }
 
-@media (max-width: 400px) {
-  .btn {
-    min-width: 35px;
-    padding: 0 5px;
-    font-size: 14px;
+@media (max-width: 440px) {
+  h1 {
+    font-size: 70px;
+  }
+  
+  #seconds, #timeSeconds {
+    margin-left: 180px;
+    font-size: 24px;
+  }
+  
+  #Time, #Timer, #Stopwatch {
+    margin-left: 280px;
+    width: 45px; /* Slightly smaller width */
+  }
+  
+  /* Further adjust buttons */
+  #stop {
+    margin-left: 200px;
+  }
+  
+  #reset {
+    margin-left: 250px;
+  }
+  
+  #start {
+    margin-left: 300px;
+  }
+}
+
+@media (max-width: 380px) {
+  h1 {
+    font-size: 60px;
+  }
+  
+  #seconds, #timeSeconds {
+    margin-left: 160px;
+    font-size: 22px;
+  }
+  
+  #Time, #Timer, #Stopwatch {
+    margin-left: 240px;
+    width: 40px;
+  }
+  
+  /* Further adjust buttons for very small screens */
+  #stop {
+    margin-left: 180px;
+  }
+  
+  #reset {
+    margin-left: 225px;
+  }
+  
+  #start {
+    margin-left: 270px;
+  }
+}
+
+@media (max-width: 320px) {
+  h1 {
+    font-size: 50px;
+  }
+  
+  #seconds, #timeSeconds {
+    margin-left: 140px;
+    font-size: 20px;
+  }
+  
+  #Time, #Timer, #Stopwatch {
+    margin-left: 210px;
+    width: 35px;
+  }
+  
+  /* Extreme small screen adjustments */
+  #stop {
+    margin-left: 160px;
+  }
+  
+  #reset {
+    margin-left: 200px;
+  }
+  
+  #start {
+    margin-left: 240px;
   }
 }

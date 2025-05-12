@@ -31,12 +31,26 @@ A clean, responsive web application that provides Time, Timer, and Stopwatch fun
 - Use "Stop" to pause and "Reset" to clear the stopwatch
 - The stopwatch displays minutes, seconds, and centiseconds
 
+## Installation
+
+1. Clone the repository or download the source code
+2. No build process required - it's pure HTML, CSS, and JavaScript
+3. Open `index.html` in your web browser to run the application
+4. For development, any standard text editor or IDE will work
+
 ## Technical Implementation
 
 - Built with pure HTML, CSS, and JavaScript (no external libraries)
 - Responsive design using CSS Grid and Flexbox
 - Modal dialogs for improved user experience
 - Custom-styled UI components
+
+## Project Structure
+
+- `index.html`: Main application HTML file
+- `style.css`: Contains all styling for the application
+- `script.js`: Core timer and stopwatch functionality
+- `timer_modal.js`: Timer input modal implementation
 
 ## Browser Compatibility
 
@@ -46,13 +60,36 @@ This application works on all modern browsers including:
 - Safari
 - Edge
 
+## Performance Considerations
+
+- The application is lightweight and loads quickly
+- Stopwatch precision is limited to centiseconds (1/100 of a second)
+- Timer accuracy depends on the browser's setTimeout/setInterval implementation
+
 ## Future Enhancements
 
 - Add sound alerts when timer completes
 - Add lap functionality to stopwatch
-- Save timer presets
-- Dark/light theme toggle
+- Save timer presets for quick access
+- Implement a dark/light theme toggle
+- Add keyboard shortcuts for common actions
+- Create a progressive web app (PWA) version for offline use
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
 This project is open-source and available under the MIT License.
+
+## Acknowledgments
+
+- Built as part of the CodeClause Internship Program
+- Special thanks to all contributors and testers
